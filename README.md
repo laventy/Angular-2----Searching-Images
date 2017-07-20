@@ -1,3 +1,4 @@
+Live Demo: https://image-searching-service.herokuapp.com/
 # ImageSearch
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
