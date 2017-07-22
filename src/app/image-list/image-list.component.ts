@@ -44,6 +44,7 @@ export class ImageListComponent implements OnInit, OnDestroy {
   }
 
   handleSuccess(data) {
+    console.log(data);
     this.imagesFound = true;
     this.images = this.images.concat(data.hits);
   }
@@ -61,11 +62,18 @@ export class ImageListComponent implements OnInit, OnDestroy {
       this._imageService.getImage(this.searchQuery, this.currentPage, 20).subscribe(
         data => this.handleSuccess(data),
         error => this.handleError(error),
-        () => this.searching = false
-      )
+        () => {
+          this.searching = false;  
+          this.isSearchingByScroll = true;
 
-      this.timer = Observable.timer(1200);
-      this.sub = this.timer.subscribe(t => this.isSearchingByScroll=false);
+          this.timer = Observable.timer(1200);
+          this.sub = this.timer.subscribe(t => this.isSearchingByScroll=false);
+        }
+      )
     }
+  }
+
+  imageIdentify(index, image){
+    return image.id;
   }
 }

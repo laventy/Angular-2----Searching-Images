@@ -19,7 +19,7 @@
         (scrolled)="onScrollDown()">
   <h4 *ngIf="imagesFound" md-subeader>Results</h4>
   <masonry [useImagesLoaded]="true">
-    <masonry-brick *ngFor="let image of images" class=image-container>
+    <masonry-brick *ngFor="let image of images; trackBy:imageIdentify" class=image-container>
       <md-card>
         <a href="{{ image.pageURL }}" target="_bank">
           <md-card-header>
@@ -36,4 +36,8 @@
       </md-card>
     </masonry-brick>
   </masonry>
+  <div *ngIf="isSearchingByScroll">
+    <md-progress-bar mode="indeterminate"></md-progress-bar>
+  </div>
 </md-card>
+
